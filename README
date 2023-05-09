@@ -1,0 +1,11 @@
+This is a fun project to produce the pulses as the MultiSIgnalGene do, but as a discrete electronic version.
+
+The input is a square or a sine signal, the pulses are generated using the peak (positive or negative) of the input.
+
+It has been only tested at a functional level. Especially, the operational amplifiers model are very basic.
+
+DO NOT reuse the models for another simulation. They have been designed as "simple stupid" in order to speed up spice.
+
+The project is based on gEda/Lepton-eda
+
+The project contains only the sources. To get exports of the schematics, parts lists, spice circuits or (later or never) the spice results, check in the artifact
