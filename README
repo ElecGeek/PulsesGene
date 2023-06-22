@@ -1,4 +1,6 @@
-This is a fun project to produce the pulses as the MultiSIgnalGene do, but as a discrete electronic version.
+This is a fun project to produce the pulses as the MultiSIgnalGene do, but as an discrete electronic version.
+
+Check the branch NT. The goal is to get a more synchronous schematic rather than a monostable based schematic. With this improvement, the width of the pulses can be adjusted, while keeping the symmetry.
 
 The input is a square or a sine signal, the pulses are generated using the peak (positive or negative) of the input.
 
