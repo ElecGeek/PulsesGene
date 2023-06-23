@@ -5,8 +5,15 @@ use IEEE.Std_Logic_1164.all,
   work.Includes_74HC.all;
 -- Entity declaration
 
+
 ENTITY Pulses_gene IS
-END Pulses_gene;
+  port (
+    CLK             :  in std_logic;
+    threshold_input :  in Std_Logic;
+    pulse_A         : out Std_Logic;
+    pulse_B         : out Std_Logic
+  );
+END entity Pulses_gene;
 
 
 -- Secondary unit
@@ -32,15 +39,11 @@ ARCHITECTURE netlist OF Pulses_gene IS
     SIGNAL unnamed_net6 : Std_Logic;
     SIGNAL unnamed_net5 : Std_Logic;
     SIGNAL GND : Std_Logic;
-    SIGNAL CLK : Std_Logic;
     SIGNAL Vcc : Std_Logic;
     SIGNAL unnamed_net4 : Std_Logic;
     SIGNAL unnamed_net3 : Std_Logic;
     SIGNAL unnamed_net2 : Std_Logic;
     SIGNAL unnamed_net1 : Std_Logic;
-    SIGNAL pulse_A : Std_Logic;
-    SIGNAL pulse_B : Std_Logic;
-    SIGNAL threshold_input : Std_Logic;
 BEGIN
 -- Architecture statement part
     U16 : HC7473

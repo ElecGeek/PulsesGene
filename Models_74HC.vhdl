@@ -270,40 +270,37 @@ entity HC74163 is
 end entity HC74163;
 
 architecture arch of HC74163 is
+  signal theVal : std_logic_vector( 4 downto 0 );
 begin
   P8 <= 'L';
   P16 <= 'H';
+  
+  P14 <= theVal( 0 );
+  P13 <= theVal( 1 );
+  P12 <= theVal( 2 );
+  P11 <= theVal( 3 );
+  P15 <= theVal( 4 );
+  
   main_proc : process( P2 )
-    variable theP, theQ : std_logic_vector( 3 downto 0 );
+    variable count_f : std_logic_vector( 3 downto 0 );
     begin
       CLK_edge : if rising_edge( P2 ) then
         RST_if : if P1 = '1' or P1 = 'H' then
           LOAD_if : if P9 = '1' or P9 = 'H' then
-            if P7 = '1' and P10 = '1' then
-              theP( 3 ) := P6;
-              theP( 2 ) := P5;
-              theP( 1 ) := P4;
-              theP( 0 ) := P3;
-              theQ := std_logic_vector( unsigned( theP ) + 1 );
-              P14 <= theQ( 0 );
-              P13 <= theQ( 1 );
-              P12 <= theQ( 2 );
-              P11 <= theQ( 3 );
-              P15 <= theQ( 0 ) and theQ( 1 ) and theQ( 2 ) and theQ( 3 );
+            if ( P7 = '1' or P7 = 'H' ) and ( P10 = '1' or P10 = 'H' ) then
+              count_f := std_logic_vector( unsigned( theVal( theVal'low + 3 downto theVal'low )) + 1 );
+              theVal( theVal'high - 1 downto theVal'low ) <= count_f; 
+              theVal( theVal'high ) <= count_f( 3 ) and count_f( 2 ) and count_f( 1 ) and count_f( 0 ); 
             end if;
           else
-            P11 <= P6;
-            P12 <= P5;
-            P13 <= P4;
-            P14 <= P3;
-            P15 <= P3 and P4 and P5 and P6;
+            theVal( 3 ) <= P6;
+            theVal( 2 ) <= P5;
+            theVal( 1 ) <= P4;
+            theVal( 0 ) <= P3;
+            theVal( 4 ) <= P3 and P4 and P5 and P6;
           end if LOAD_if;
         else
-          P11 <= '0';
-          P12 <= '0';
-          P13 <= '0';
-          P14 <= '0';
-          P15 <= '0';
+          theVal <= ( others => '0' );
         end if RST_if;
       end if CLK_edge;
     end process main_proc;
