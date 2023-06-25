@@ -660,6 +660,8 @@ T 41200 49200 15 10 1 1 0 0 1
 model-name=AMP_OP
 T 41200 49200 5 10 0 1 0 0 1
 footprint=DIL8
+T 41200 49200 5 10 0 1 0 0 1
+value=LF355
 }
 C 41200 47300 0 0 0 opamp_gen_dil8_ci.sym
 {
@@ -671,6 +673,8 @@ T 41200 47300 15 10 1 1 0 0 1
 model-name=AMP_OP
 T 41200 47300 5 10 0 1 0 0 1
 footprint=DIL8
+T 41200 47300 5 10 0 1 0 0 1
+value=LF355
 }
 C 46300 47000 0 0 0 opamp_gen_dil8_ci.sym
 {
@@ -682,6 +686,8 @@ T 46300 47000 15 10 1 1 0 0 1
 model-name=AMP_OP
 T 46300 47000 5 10 0 1 0 0 1
 footprint=DIL8
+T 46300 47000 5 10 0 1 0 0 1
+value=LF355
 }
 C 48700 46700 1 0 0 opamp_gen_dil8_ci.sym
 {
@@ -693,6 +699,8 @@ T 48700 46700 5 10 1 1 0 0 1
 model-name=AMP_OP
 T 48700 46700 5 10 0 1 0 0 1
 footprint=DIL8
+T 48700 46700 5 10 0 1 0 0 1
+value=LF355
 }
 C 51200 48800 1 0 0 opamp_gen_dil8_ci.sym
 {
@@ -704,6 +712,8 @@ T 51500 48700 5 10 1 1 0 0 1
 model-name=AMP_OP
 T 51200 48800 5 10 0 1 0 0 1
 footprint=DIL8
+T 51200 48800 5 10 0 1 0 0 1
+value=LF355
 }
 C 42000 45200 0 0 0 opamp_gen_dil8_ci.sym
 {
@@ -715,6 +725,8 @@ T 42000 45200 15 10 1 1 0 0 1
 model-name=AMP_OP
 T 42000 45200 5 10 0 1 0 0 1
 footprint=DIL8
+T 42000 45200 5 10 0 1 0 0 1
+value=LF355
 }
 C 46600 43900 0 0 0 opamp_gen_dil8_ci.sym
 {
@@ -726,6 +738,8 @@ T 46600 43900 15 10 1 1 0 0 1
 model-name=AMP_OP
 T 46600 43900 5 10 0 1 0 0 1
 footprint=DIL8
+T 46600 43900 5 10 0 1 0 0 1
+value=LF355
 }
 C 42300 42600 0 0 0 opamp_gen_dil8_ci.sym
 {
@@ -737,6 +751,8 @@ T 42300 42600 15 10 1 1 0 0 1
 model-name=AMP_OP
 T 42300 42600 5 10 0 1 0 0 1
 footprint=DIL8
+T 42300 42600 5 10 0 1 0 0 1
+value=LF355
 }
 C 42300 42100 1 0 0 resistor-2.sym
 {
@@ -763,7 +779,7 @@ footprint=500mil
 C 41100 41900 1 0 0 gnd-1.sym
 C 40700 43100 1 0 0 input-2.sym
 {
-T 40400 43400 5 10 1 0 0 0 1
+T 40400 43400 5 10 1 1 0 0 1
 net=INPUT_SIGNAL:1
 T 41300 43800 5 10 0 0 0 0 1
 device=none
@@ -799,6 +815,8 @@ T 44800 49400 5 10 0 1 0 0 1
 model-name=AMP_OP
 T 44800 49400 5 10 0 1 0 0 1
 footprint=DIL8
+T 44800 49400 5 10 0 1 0 0 1
+value=LF355
 }
 N 44800 49600 44800 49300 4
 N 44800 49300 45800 49300 4
@@ -808,7 +826,7 @@ N 44600 50000 44600 49100 4
 N 44600 49100 46000 49100 4
 C 49000 45100 1 0 0 io-1.sym
 {
-T 48700 45400 5 10 1 0 0 0 1
+T 48700 45400 5 10 1 1 0 0 1
 net=threshold_input:1
 T 49200 45700 5 10 0 0 0 0 1
 device=none
@@ -817,7 +835,7 @@ value=IO
 }
 C 43300 42900 1 0 0 io-1.sym
 {
-T 43100 43200 5 10 1 0 0 0 1
+T 43100 43200 5 10 1 1 0 0 1
 net=preamp_out:1
 T 43500 43500 5 10 0 0 0 0 1
 device=none
@@ -826,7 +844,7 @@ value=IO
 }
 C 47300 46100 1 0 0 io-1.sym
 {
-T 47500 46400 5 10 1 0 0 0 1
+T 47500 46400 5 10 1 1 0 0 1
 net=rectified:1
 T 47500 46700 5 10 0 0 0 0 1
 device=none
@@ -835,7 +853,7 @@ value=IO
 }
 C 49700 45900 1 0 0 io-1.sym
 {
-T 49200 46200 5 10 1 0 0 0 1
+T 49200 46200 5 10 1 1 0 0 1
 net=detected_fast:1
 T 49900 46500 5 10 0 0 0 0 1
 device=none
@@ -844,7 +862,7 @@ value=IO
 }
 C 45800 50100 1 0 0 io-1.sym
 {
-T 45900 50400 5 10 1 0 0 0 1
+T 45900 50400 5 10 1 1 0 0 1
 net=detected_slow:1
 T 46000 50700 5 10 0 0 0 0 1
 device=none
@@ -853,7 +871,7 @@ value=IO
 }
 C 42200 50300 1 180 0 io-1.sym
 {
-T 42300 50500 5 10 1 0 180 0 1
+T 42300 50500 5 10 1 1 180 0 1
 net=display_low:1
 T 42000 49700 5 10 0 0 180 0 1
 device=none
@@ -862,7 +880,7 @@ value=IO
 }
 C 42900 48300 1 180 0 io-1.sym
 {
-T 43100 48500 5 10 1 0 180 0 1
+T 43100 48500 5 10 1 1 180 0 1
 net=display_high:1
 T 42700 47700 5 10 0 0 180 0 1
 device=none
@@ -871,7 +889,7 @@ value=IO
 }
 C 54000 45200 1 0 1 io-1.sym
 {
-T 54000 45500 5 10 1 0 0 6 1
+T 54000 45500 5 10 1 1 0 6 1
 net=pulse_B:1
 T 53800 45800 5 10 0 0 0 6 1
 device=none
@@ -880,7 +898,7 @@ value=IO
 }
 C 51200 45200 1 0 0 io-1.sym
 {
-T 51300 45500 5 10 1 0 0 0 1
+T 51300 45500 5 10 1 1 0 0 1
 net=pulse_A:1
 T 51400 45800 5 10 0 0 0 0 1
 device=none
@@ -889,7 +907,7 @@ value=IO
 }
 C 52200 49800 1 0 0 io-1.sym
 {
-T 51900 50100 5 10 1 0 0 0 1
+T 51900 50100 5 10 1 1 0 0 1
 net=output_pulses:1
 T 52400 50400 5 10 0 0 0 0 1
 device=none

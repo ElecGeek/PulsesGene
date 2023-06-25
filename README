@@ -1,6 +1,6 @@
 This is a fun project to produce the pulses as the MultiSIgnalGene do, but as an discrete electronic version.
 
-Check the branch NT. The goal is to get a more synchronous schematic rather than a monostable based schematic. With this improvement, the width of the pulses can be adjusted, while keeping the symmetry.
+The new version uses a more synchronous schematic rather than a monostable based schematic. With this improvement, the width of the pulses can be adjusted, while keeping the symmetry.
 
 The input is a square or a sine signal, the pulses are generated using the peak (positive or negative) of the input.
 
@@ -11,3 +11,8 @@ DO NOT reuse the models for another simulation. They have been designed as "simp
 The project is based on gEda/Lepton-eda
 
 The project contains only the sources. To get exports of the schematics, parts lists, spice circuits or (later or never) the spice results, check in the artifact
+
+The partslist points LF355 operational amplifiers, many can be used
+The X1 is a preamplifier, according to the input level, its resistors should be adjusted
+The counters U13 and U14 does not use the reset (which is done by load 0). Then both 74HC161 and 74HC163 can be used
+The counter U14 does not count above 7. Then 74HC160 and 74HC162 can be used as well.
