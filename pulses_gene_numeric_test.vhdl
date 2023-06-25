@@ -18,6 +18,12 @@ architecture arch of Pulses_gene_test is
       );
   end component Pulses_gene;
   signal pulse_A, pulse_B : std_logic;
+  -- This signal is not a part of the simulation
+  -- It gives an idea of what the analogue part (with the digital) issue
+  -- All wave viewers have an analogue mode.
+  -- Some WV does not have a signed analogue mode.
+  -- Then the hig bit is toggled here.
+  signal pulse_final : signed( 1 downto 0 );
   signal last_pulse_state : bit_vector( 1 downto 0 ) := "00";
   signal last_pulse_val : bit;
   signal pulses_toggled, pulses_not_toggled : natural := 0;
@@ -26,6 +32,8 @@ architecture arch of Pulses_gene_test is
   signal pulses_duration_min : integer := integer'high;
   signal pulses_duration_max : integer := integer'low;
 begin
+  pulse_final( 1 ) <= not pulse_B;
+  pulse_final( 0 ) <= pulse_B or pulse_A;
   CLK_proc : process
     variable next_pulse_state : bit_vector( last_pulse_state'range );
     begin
@@ -80,7 +88,7 @@ begin
         report "Simulation is over" severity note;
         report "------------------" severity note;
         report "Please note an error counter not to 0 may generate wrong reports" severity note;
-        report "Pulse toggled (A follow B and B follow A): " & natural'image( pulses_toggled ) &
+        report "Pulse toggled (A follow B or B follow A): " & natural'image( pulses_toggled ) &
           ", pulses not toggled (2 consecutive A or B): " & natural'image( pulses_not_toggled )
           severity note;
         report "Pulse overlap (no both A and B low in between): " & natural'image( pulses_overlap ) &
