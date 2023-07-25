@@ -5,13 +5,15 @@ BUILDDIR?=
 DESTDIR?=
 
 
-all			: $(DESTDIR)pulses_gene.partslist_by_refdes.txt $(DESTDIR)pulses_gene.partslist_by_value.txt $(DESTDIR)pulses_gene.net $(DESTDIR)pulses_gene.cir $(DESTDIR)sch_build_date
+all			: $(DESTDIR)pulses_gene.partslist_by_refdes.txt $(DESTDIR)pulses_gene.partslist_by_value.txt $(DESTDIR)pulses_gene.net $(DESTDIR)pulses_gene.cir $(DESTDIR)sch_build_date $(DESTDIR)pulses_gene_numeric.net
 
 lists		: $(DESTDIR)pulses_gene.partslist_by_refdes.txt $(DESTDIR)pulses_gene.partslist_by_value.txt
 
 spice		: $(BUILDDIR)pulses_gene.cir
 
 pcb		: $(DESTDIR)pulses_gene.net
+
+vhdl	: $(DESTDIR)pulses_gene_numeric.net
 
 schemas		: $(DESTDIR)sch_build_date
 
@@ -28,7 +30,8 @@ $(BUILDDIR)AMP_OP.cir	:	$(SRCDIR)AMP_OP.sch
 	$(NETLIST_PROG) -g spice-sdb -o $(BUILDDIR)AMP_OP.cir $(SRCDIR)AMP_OP.sch
 
 $(DESTDIR)pulses_gene.net : $(SRCDIR)pulses_gene_analog.sch $(SRCDIR)pulses_gene_numeric.sch $(SRCDIR)pulses_gene_power.sch
-	$(NETLIST_PROG) -g PCB -o $(DESTDIR)pulses_gene.net $(SRCDIR)pulses_gene_analog.sch $(SRCDIR)pulses_gene_numeric.sch $(SRCDIR)pulses_gene_power.sch
+	$(NETLIST_PROG) -g PCB -o $(DESTDIR)pulses_gene_temp.net $(SRCDIR)pulses_gene_analog.sch $(SRCDIR)pulses_gene_numeric.sch $(SRCDIR)pulses_gene_power.sch
+	sed -r --file=$(SRCDIR)net_pcb_fix.reg $(DESTDIR)pulses_gene_temp.net > $(DESTDIR)pulses_gene.net
 
 $(BUILDDIR)pulses_gene.cir : $(SRCDIR)pulses_gene_analog.sch $(SRCDIR)pulses_gene_analog_test.sch $(BUILDDIR)HC4066.cir $(BUILDDIR)AMP_OP.cir $(SRCDIR)Modulator.cir
 #	Look like weird. But NETLIST_PROG does not have options to pass a path.
@@ -42,7 +45,12 @@ ifeq ($(BUILDDIR),)
 else
 	cd $(BUILDDIR); $(NETLIST_PROG) -g spice-sdb -o pulses_gene.cir pulses_gene_analog.sch pulses_gene_analog_test.sch
 endif
-	sed -r --file=$(SRCDIR)spice_fix.sed  $(BUILDDIR)pulses_gene.cir > $(BUILDDIR)pulses_gene_spice.cir
+	sed -r --file=$(SRCDIR)spice_fix.reg  $(BUILDDIR)pulses_gene.cir > $(BUILDDIR)pulses_gene_spice.cir
+
+$(DESTDIR)pulses_gene_numeric.net : $(SRCDIR)pulses_gene_numeric.sch
+	$(NETLIST_PROG) -g vhdl -o $(DESTDIR)pulses_gene_numeric_temp.vhdl $(SRCDIR)pulses_gene_numeric.sch 
+	sed -r --file=$(SRCDIR)vhdl_fix.reg $(DESTDIR)pulses_gene_numeric_temp.vhdl > $(DESTDIR)pulses_gene_numeric.vhdl
+
 
 
 $(DESTDIR)sch_build_date	: $(SRCDIR)pulses_gene_analog.sch $(SRCDIR)pulses_gene_analog_test.sch $(SRCDIR)pulses_gene_numeric.sch $(SRCDIR)HC4066.sch $(SRCDIR)AMP_OP.sch $(SRCDIR)Modulator.cir
