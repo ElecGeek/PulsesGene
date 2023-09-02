@@ -379,21 +379,6 @@ footprint=1206
 T 47300 49100 5 10 0 1 0 0 1
 tolerance=2%
 }
-C 46200 50000 1 270 0 capacitor-2.sym
-{
-T 46900 49800 5 10 0 0 270 0 1
-device=POLARIZED_CAPACITOR
-T 46300 49700 5 10 1 1 90 0 1
-refdes=C7
-T 47100 49800 5 10 0 0 270 0 1
-symversion=0.1
-T 46200 49100 5 10 1 1 90 0 1
-value=2.2uF
-T 46200 50000 5 10 0 1 270 0 1
-footprint=0805
-T 46200 50000 5 10 0 1 0 0 1
-tolerance=/
-}
 C 42200 49100 1 0 0 led-1.sym
 {
 T 43000 49700 5 10 0 0 0 0 1
@@ -1329,4 +1314,21 @@ T 39800 42600 5 10 1 1 0 0 1
 value=2.2uF
 T 39800 42600 5 10 0 1 0 0 1
 tolerance=/
+}
+C 46600 49100 1 90 0 capacitor-1.sym
+{
+T 45900 49300 5 10 0 0 90 0 1
+device=CAPACITOR
+T 46100 49300 5 10 1 1 90 0 1
+refdes=C7
+T 45700 49300 5 10 0 0 90 0 1
+symversion=0.1
+T 46600 49100 5 10 1 1 0 0 1
+value=4.7uF
+T 46600 49100 5 10 0 1 0 0 1
+comment=MLCC 1206
+T 46600 49100 5 10 0 1 0 0 1
+footprint=1206
+T 46600 49100 5 10 0 1 0 0 1
+tolerance=5%
 }

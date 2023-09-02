@@ -67,6 +67,8 @@ $(DESTDIR)sch_build_date	: $(SRCDIR)pulses_gene_analog.sch $(SRCDIR)pulses_gene_
 	$(EXPORT_PROG) export -o $(DESTDIR)pulses_gene_analog_test.ps $(SRCDIR)pulses_gene_analog_test.sch
 	$(EXPORT_PROG) export -o $(DESTDIR)pulses_gene_numeric.ps $(SRCDIR)pulses_gene_numeric.sch
 	$(EXPORT_PROG) export -o $(DESTDIR)pulses_gene_numeric.pdf $(SRCDIR)pulses_gene_numeric.sch
+	$(EXPORT_PROG) export -o $(DESTDIR)pulses_gene_power.ps $(SRCDIR)pulses_gene_power.sch
+	$(EXPORT_PROG) export -o $(DESTDIR)pulses_gene_power.pdf $(SRCDIR)pulses_gene_power.sch
 	$(EXPORT_PROG) export -o $(DESTDIR)HC4066.pdf $(SRCDIR)HC4066.sch
 	$(EXPORT_PROG) export -o $(DESTDIR)HC4066.ps $(SRCDIR)HC4066.sch
 	$(EXPORT_PROG) export -o $(DESTDIR)AMP_OP.ps $(SRCDIR)AMP_OP.sch
