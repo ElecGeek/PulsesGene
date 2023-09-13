@@ -126,9 +126,9 @@ device=model
 T 52000 42500 5 10 1 1 0 0 1
 refdes=A5
 T 53200 42200 5 10 1 1 0 0 1
-model-name=HC4066
+model-name=HC4053
 T 52400 42000 5 10 1 1 0 0 1
-file=HC4066.cir
+file=HC4053.cir
 }
 C 47100 44300 1 0 0 vpulse-1.sym
 {
