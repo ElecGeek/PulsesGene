@@ -7,7 +7,7 @@ device=spice-subcircuit-LL
 T 47000 41200 5 10 1 1 0 0 1
 refdes=A1
 T 47000 40900 5 10 1 1 0 0 1
-model-name=AMP_OP
+model-name=AMP_OP_FAST
 }
 C 50100 45500 1 0 0 spice-subcircuit-IO-1.sym
 {
@@ -90,7 +90,7 @@ refdes=E3
 T 46200 46350 5 10 0 0 0 0 1
 symversion=0.1
 T 46700 45050 5 10 1 0 0 5 1
-value=1000
+value=10000
 }
 C 44500 45800 1 90 0 diode-1.sym
 {

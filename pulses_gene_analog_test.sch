@@ -108,26 +108,26 @@ device=none
 T 48400 46800 5 10 1 1 0 1 1
 value=OUTPUT
 }
-C 51900 42800 1 0 0 spice-model-1.sym
+C 51900 43500 1 0 0 spice-model-1.sym
 {
-T 52000 43500 5 10 0 1 0 0 1
+T 52000 44200 5 10 0 1 0 0 1
 device=model
-T 52000 43400 5 10 1 1 0 0 1
+T 52000 44100 5 10 1 1 0 0 1
 refdes=A4
-T 53200 43100 5 10 1 1 0 0 1
+T 53200 43800 5 10 1 1 0 0 1
 model-name=AMP_OP
-T 52400 42900 5 10 1 1 0 0 1
+T 52400 43600 5 10 1 1 0 0 1
 file=AMP_OP.cir
 }
-C 51900 41900 1 0 0 spice-model-1.sym
+C 51900 41700 1 0 0 spice-model-1.sym
 {
-T 52000 42600 5 10 0 1 0 0 1
+T 52000 42400 5 10 0 1 0 0 1
 device=model
-T 52000 42500 5 10 1 1 0 0 1
-refdes=A5
-T 53200 42200 5 10 1 1 0 0 1
+T 52000 42300 5 10 1 1 0 0 1
+refdes=A6
+T 53200 42000 5 10 1 1 0 0 1
 model-name=HC4053
-T 52400 42000 5 10 1 1 0 0 1
+T 52400 41800 5 10 1 1 0 0 1
 file=HC4053.cir
 }
 C 47100 44300 1 0 0 vpulse-1.sym
@@ -177,7 +177,7 @@ C 41300 49800 1 0 0 spice-options-1.sym
 T 41400 50100 5 10 0 1 0 0 1
 device=options
 T 41400 50200 5 10 1 1 0 0 1
-refdes=A6
+refdes=A7
 T 41500 49900 5 10 1 1 0 0 1
 value=*tran 30uS 0.2S
 }
@@ -186,7 +186,7 @@ C 41300 48900 1 0 0 spice-options-1.sym
 T 41400 49200 5 10 0 1 0 0 1
 device=options
 T 41400 49300 5 10 1 1 0 0 1
-refdes=A7
+refdes=A8
 T 41400 49000 5 10 1 1 0 0 1
 value=plot V(INPUT_SIGNAL), V(rectified), V(detected_fast), 3+V(threshold_input)/5
 }
@@ -195,7 +195,7 @@ C 41300 47900 1 0 0 spice-options-1.sym
 T 41400 48200 5 10 0 1 0 0 1
 device=options
 T 41400 48300 5 10 1 1 0 0 1
-refdes=A8
+refdes=A9
 T 41400 48000 5 10 1 1 0 0 1
 value=plot V(rectified), V(detected_slow), 3+V(display_low)/5, 3+V(display_high)/5
 }
@@ -204,7 +204,7 @@ C 47800 49800 1 0 0 spice-options-1.sym
 T 47900 50100 5 10 0 1 0 0 1
 device=options
 T 47900 50200 5 10 1 1 0 0 1
-refdes=A9
+refdes=A10
 T 47900 49900 5 10 1 1 0 0 1
 value=plot V(detected_fast), 5+V(pulse_A)/10, 5+V(pulse_B)/10, V(output_pulses)
 }
@@ -220,4 +220,15 @@ T 41000 41700 5 10 0 1 0 0 1
 type=D
 T 41500 41800 5 10 1 1 0 0 1
 model=IS = 2.076E-7 N = 1.023 BV = 33 IBV = 10E-6 RS = 2.326 CJO = 1.21E-11 VJ = 0.1319 M = 0.2904 EG = 0.69 XTI = 2 
+}
+C 51900 42600 1 0 0 spice-model-1.sym
+{
+T 52000 43300 5 10 0 1 0 0 1
+device=model
+T 52000 43200 5 10 1 1 0 0 1
+refdes=A5
+T 53200 42900 5 10 1 1 0 0 1
+model-name=AMP_OP_FAST
+T 52400 42700 5 10 1 1 0 0 1
+file=AMP_OP_FAST.cir
 }
