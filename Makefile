@@ -85,6 +85,6 @@ endif
 
 clean	:
 	rm -f $(DESTDIR)pulses_gene.partslist_by_refdes.txt $(DESTDIR)pulses_gene.partslist_by_value.txt
-	rm -f $(BUILDDIR)HC4053.cir $(BUILDDIR)AMP_OP.cir
+	rm -f $(BUILDDIR)HC4053.cir $(BUILDDIR)AMP_OP.cir $(BUILDDIR)AMP_OP_FAST.cir
 	rm -f $(DESTDIR)pulses_gene.net $(BUILDDIR)pulses_gene.cir $(BUILDDIR)pulses_gene_spice.cir
 	rm -f $(DESTDIR)*.ps $(DESTDIR)*.pdf
