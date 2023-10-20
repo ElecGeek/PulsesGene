@@ -1,6 +1,6 @@
 # release: pcb 20091103
-# date:    Fri Sep 29 10:40:05 2023
-# user:    elecgeek
+# date:    Sun Oct 15 11:24:17 2023
+# user:    ElecGeek
 # host:    noreply.github.com
 
 # To read pcb files, the pcb version (or the cvs source date) must be >= the file version
@@ -2175,29 +2175,29 @@ Element["" "Small outline package, narrow (150mil)" "X13" "SO8" 189500 410500 80
 
 	)
 
-Element["onsolder" "SMT diode (pin 1 is cathode)" "D10" "DO214" 205500 490000 -5000 27600 0 100 "auto"]
+Element["onsolder" "SMT diode (pin 1 is cathode)" "D10" "DO214" 205500 489000 11500 24600 0 100 "auto"]
 (
-	Pad[-1900 -10600 1900 -10600 14000 2000 14600 "1" "1" "onsolder,square"]
 	Pad[-1900 10600 1900 10600 14000 2000 14600 "2" "2" "onsolder,square"]
-	ElementLine [-11400 -14100 -8900 -21100 1000]
-	ElementLine [-11400 -14100 -11400 20100 1000]
-	ElementLine [-11400 20100 11400 20100 1000]
-	ElementLine [11400 -14100 11400 20100 1000]
-	ElementLine [8900 -21100 11400 -14100 1000]
-	ElementLine [-8900 -21100 8900 -21100 2000]
-
-	)
-
-Element["onsolder" "SMT diode (pin 1 is cathode)" "D11" "DO214" 191000 442500 -10000 29600 0 100 "auto"]
-(
-	Pad[-1900 10600 1900 10600 14000 2000 14600 "1" "1" "onsolder,square"]
-	Pad[-1900 -10600 1900 -10600 14000 2000 14600 "2" "2" "onsolder,square"]
+	Pad[-1900 -10600 1900 -10600 14000 2000 14600 "1" "1" "onsolder,square"]
 	ElementLine [11400 14100 8900 21100 1000]
 	ElementLine [11400 -20100 11400 14100 1000]
 	ElementLine [-11400 -20100 11400 -20100 1000]
 	ElementLine [-11400 -20100 -11400 14100 1000]
 	ElementLine [-8900 21100 -11400 14100 1000]
 	ElementLine [-8900 21100 8900 21100 2000]
+
+	)
+
+Element["onsolder" "SMT diode (pin 1 is cathode)" "D11" "DO214" 191000 443000 -6500 26600 0 100 "auto"]
+(
+	Pad[-1900 -10600 1900 -10600 14000 2000 14600 "2" "2" "onsolder,square"]
+	Pad[-1900 10600 1900 10600 14000 2000 14600 "1" "1" "onsolder,square"]
+	ElementLine [-11400 -14100 -8900 -21100 1000]
+	ElementLine [-11400 -14100 -11400 20100 1000]
+	ElementLine [-11400 20100 11400 20100 1000]
+	ElementLine [11400 -14100 11400 20100 1000]
+	ElementLine [8900 -21100 11400 -14100 1000]
+	ElementLine [-8900 -21100 8900 -21100 2000]
 
 	)
 
@@ -2288,9 +2288,9 @@ Rat[246043 412607 0 217595 411819 0  ""]
 Rat[244043 460607 0 249400 437200 0  ""]
 Rat[249400 437200 0 249400 432100 0  ""]
 Rat[249400 432100 0 230500 432000 0  ""]
-Rat[244043 460607 0 203600 500600 1  ""]
+Rat[244043 460607 0 203600 499600 1  ""]
 Rat[244043 472607 0 249400 439800 0  ""]
-Rat[244043 472607 0 189100 453100 1  ""]
+Rat[244043 472607 0 189100 453600 1  ""]
 Rat[236457 450107 0 230500 439700 0  ""]
 Rat[243543 450107 0 230500 434600 0  ""]
 Layer(1 "component")
