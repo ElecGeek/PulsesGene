@@ -1,0 +1,19 @@
+The master branch is the electronics version of the MultiSignalGene project. The B pulse follows the A one.
+time	   output
+0	pulse_A
+1	pulse_B
+2	all reset
+3	all reset
+4	all reset
+5	all reset
+6	all reset and wait for the next trig
+
+In this branch, the B pulse if started after the pulse length
+time	   output
+0	pulse_A
+1	all reset
+2	pulse_B
+3	all reset
+4	all reset
+5	all reset
+6	all reset and wait for the next trig
