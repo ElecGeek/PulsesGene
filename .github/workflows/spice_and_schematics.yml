@@ -2,7 +2,7 @@ name: Spice and schemas
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, pulses_separ ]
   pull_request:
     branches: [ master ]
 
