@@ -186,7 +186,7 @@ device=VOLTAGE_SOURCE
 T 46100 44150 5 10 0 0 0 0 1
 footprint=none
 T 46200 43550 5 10 1 1 0 0 1
-value=DC 4V
+value=DC 5V
 }
 C 45600 42800 1 0 0 gnd-1.sym
 C 46800 43400 1 0 0 gnd-1.sym
