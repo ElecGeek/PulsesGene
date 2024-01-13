@@ -18,7 +18,7 @@ spice		: $(BUILDDIR)pulses_gene.cir
 
 pcb		: $(DESTDIR)pulses_gene.net
 
-vhdl	: $(DESTDIR)pulses_gene_numeric.net
+vhdl	: $(DESTDIR)pulses_gene_numeric.vhdl
 
 schemas		: $(DESTDIR)sch_build_date
 
@@ -62,7 +62,7 @@ else
 endif
 	sed -r --file=$(SCRDIR)spice_fix.reg  $(BUILDDIR)pulses_gene.cir > $(BUILDDIR)pulses_gene_spice.cir
 
-$(DESTDIR)pulses_gene_numeric.net : $(SCRDIR)pulses_gene_numeric.sch
+$(DESTDIR)pulses_gene_numeric.vhdl : $(SCRDIR)pulses_gene_numeric.sch
 	$(NETLIST_PROG) -g vhdl -o $(DESTDIR)pulses_gene_numeric.vhdl $(SCRDIR)pulses_gene_numeric.sch 
 	sed -r -i --file=$(SCRDIR)vhdl_fix.reg $(DESTDIR)pulses_gene_numeric.vhdl
 	sed -r -i '/^ENTITY/a port (\n\tCLK_IN :  in std_logic;\n\tthreshold :  in std_logic;\n\tpulse_A : out std_logic;\n\tpulse_B : out std_logic\n);' $(DESTDIR)pulses_gene_numeric.vhdl 
@@ -70,7 +70,7 @@ $(DESTDIR)pulses_gene_numeric.net : $(SCRDIR)pulses_gene_numeric.sch
 	sed -r -i '/SIGNAL CLK_IN :/d;/SIGNAL threshold :/d;/SIGNAL pulse_A :/d;/SIGNAL pulse_B :/d' $(DESTDIR)pulses_gene_numeric.vhdl 
 
 
-$(DESTDIR)simul : $(SCRDIR)pulses_gene_numeric.vhdl
+$(DESTDIR)simul : $(DESTDIR)pulses_gene_numeric.vhdl
 	touch $(DESTDIR)simul
 	$(GHDL_PROG) -a $(SCRDIR)Models_74HC.vhdl
 	$(GHDL_PROG) -a $(SCRDIR)pulses_gene_numeric.vhdl
@@ -78,7 +78,8 @@ $(DESTDIR)simul : $(SCRDIR)pulses_gene_numeric.vhdl
 	$(GHDL_PROG) -e pulses_gene
 	$(GHDL_PROG) -r pulses_gene --vcd=$(DESTDIR)pulses_gene.wav
 
-synth_ice40	:
+synth_ice40	: $(DESTDIR)pulses_gene_numeric.vhdl
+	$(GHDL_PROG) -a $(SCRDIR)Models_74HC.vhdl
 	$(GHDL_PROG) -a $(SCRDIR)pulses_gene_numeric.vhdl
 	$(YOSYS_PROG) -m ghdl -p '$(GHDL_PROG) pulses_gene; synth_ice40 -json $(SYNTHDESTDIR)pulses_gene.ice40.json' 2>&1 |tee $(SYNTHDESTDIR)pulses_gene.synth.out.txt
 	$(NEXTPNR-ICE40_PROG) --lp384 --package qn32 --freq 5.00 --top Pulses_gene --asc $(SYNTHDESTDIR)pulses_gene.asc --json $(SYNTHDESTDIR)pulses_gene.ice40.json --placed-svg $(SYNTHDESTDIR)pulses_gene.placed.svg --routed-svg $(SYNTHDESTDIR)pulses_gene.routed.svg --report $(SYNTHDESTDIR)pulses_gene.report.json 2>&1 |tee $(SYNTHDESTDIR)pulses_gene.P_and_R.out.txt
