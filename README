@@ -1,6 +1,8 @@
 This is a fun project to produce the pulses as the MultiSIgnalGene do, but as an discrete electronic version.
 
-The new version uses a more synchronous schematic rather than a monostable based schematic. With this improvement, the width of the pulses can be adjusted, while keeping the symmetry.
+The brach separ_pulses is more up to date and have some FPGA support.
+
+The width of the pulses can be adjusted, while keeping the symmetry.
 
 The input is a square or a sine signal, the pulses are generated using the peak (positive or negative) of the input.
 
