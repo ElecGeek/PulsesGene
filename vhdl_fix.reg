@@ -1,1 +1,1 @@
-s/^([ \t]+)([0-9]+) => /\1P\2\t=>\t/g;s/ENTITY not found IS/ENTITY Pulses_gene IS/;s/END not found/END ENTITY Pulses_gene/;s/ARCHITECTURE netlist OF not found IS/ARCHITECTURE netlist OF Pulses_gene IS/
+s/^([ \t]+)([0-9]+) => /\1P\2\t=>\t/g;s/ENTITY not found IS/ENTITY Pulses_gene IS/;s/END not found/END ENTITY Pulses_gene/;s/ARCHITECTURE netlist OF not found IS/ARCHITECTURE netlist OF Pulses_gene IS/;s/U([0-9]+) : ([0-9]+)/U\1 : HC\2/g;s/BEGIN/BEGIN\n\tVcc<='1';\n\tGND<='0';/;s/END COMPONENT ;//g;s/COMPONENT 74([0-9]+)//g

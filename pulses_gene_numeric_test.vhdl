@@ -11,7 +11,7 @@ architecture arch of Pulses_gene_test is
   signal simul_count : unsigned( 14 downto 0 ) := ( others => '0' );
   component Pulses_gene IS
     port (
-      CLK             :  in std_logic;
+      CLK_IN          :  in std_logic;
       threshold_input :  in Std_Logic;
       pulse_A         : out Std_Logic;
       pulse_B         : out Std_Logic
@@ -123,7 +123,7 @@ begin
     end process input_proc;
 
     pulse_gene_instanc : Pulses_gene port map (
-      CLK => CLK,
+      CLK_IN => CLK,
       threshold_input => the_input,
       pulse_A => pulse_A,
       pulse_B => pulse_B );
