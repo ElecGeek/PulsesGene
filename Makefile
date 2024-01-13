@@ -65,22 +65,23 @@ endif
 $(DESTDIR)pulses_gene_numeric.vhdl : $(SCRDIR)pulses_gene_numeric.sch
 	$(NETLIST_PROG) -g vhdl -o $(DESTDIR)pulses_gene_numeric.vhdl $(SCRDIR)pulses_gene_numeric.sch 
 	sed -r -i --file=$(SCRDIR)vhdl_fix.reg $(DESTDIR)pulses_gene_numeric.vhdl
-	sed -r -i '/^ENTITY/a port (\n\tCLK_IN :  in std_logic;\n\tthreshold :  in std_logic;\n\tpulse_A : out std_logic;\n\tpulse_B : out std_logic\n);' $(DESTDIR)pulses_gene_numeric.vhdl 
+	sed -r -i '/^ENTITY/a port (\n\tCLK_IN :  in std_logic;\n\tthreshold_input :  in std_logic;\n\tpulse_A : out std_logic;\n\tpulse_B : out std_logic\n);' $(DESTDIR)pulses_gene_numeric.vhdl 
 	sed -r -i 's/use IEEE.Std_Logic_1164.all;/use IEEE.Std_Logic_1164.all,\nwork.includes_74HC.all;/' $(DESTDIR)pulses_gene_numeric.vhdl
-	sed -r -i '/SIGNAL CLK_IN :/d;/SIGNAL threshold :/d;/SIGNAL pulse_A :/d;/SIGNAL pulse_B :/d' $(DESTDIR)pulses_gene_numeric.vhdl 
+	sed -r -i '/SIGNAL CLK_IN :/d;/SIGNAL threshold_input :/d;/SIGNAL pulse_A :/d;/SIGNAL pulse_B :/d' $(DESTDIR)pulses_gene_numeric.vhdl 
 
 
-$(DESTDIR)simul : $(DESTDIR)pulses_gene_numeric.vhdl
+simul : $(DESTDIR)pulses_gene_numeric.vhdl
 	touch $(DESTDIR)simul
 	$(GHDL_PROG) -a $(SCRDIR)Models_74HC.vhdl
-	$(GHDL_PROG) -a $(SCRDIR)pulses_gene_numeric.vhdl
+	$(GHDL_PROG) -a $(DESTDIR)pulses_gene_numeric.vhdl
 	$(GHDL_PROG) -a $(SCRDIR)pulses_gene_numeric_test.vhdl
-	$(GHDL_PROG) -e pulses_gene
-	$(GHDL_PROG) -r pulses_gene --vcd=$(DESTDIR)pulses_gene.wav
+	$(GHDL_PROG) -e Pulses_gene_test
+	$(GHDL_PROG) -r Pulses_gene_test --vcd=$(DESTDIR)pulses_gene.wav 2>&1 | tee $(DESTDIR)pulses_gene.out.txt
+	echo "The wav file is NOT an audio file, it can be opened, for instance, using gtk-wave" > $(DESTDIR)README
 
 synth_ice40	: $(DESTDIR)pulses_gene_numeric.vhdl
 	$(GHDL_PROG) -a $(SCRDIR)Models_74HC.vhdl
-	$(GHDL_PROG) -a $(SCRDIR)pulses_gene_numeric.vhdl
+	$(GHDL_PROG) -a $(DESTDIR)pulses_gene_numeric.vhdl
 	$(YOSYS_PROG) -m ghdl -p '$(GHDL_PROG) pulses_gene; synth_ice40 -json $(SYNTHDESTDIR)pulses_gene.ice40.json' 2>&1 |tee $(SYNTHDESTDIR)pulses_gene.synth.out.txt
 	$(NEXTPNR-ICE40_PROG) --lp384 --package qn32 --freq 5.00 --top Pulses_gene --asc $(SYNTHDESTDIR)pulses_gene.asc --json $(SYNTHDESTDIR)pulses_gene.ice40.json --placed-svg $(SYNTHDESTDIR)pulses_gene.placed.svg --routed-svg $(SYNTHDESTDIR)pulses_gene.routed.svg --report $(SYNTHDESTDIR)pulses_gene.report.json 2>&1 |tee $(SYNTHDESTDIR)pulses_gene.P_and_R.out.txt
 	$(ICEPACK) $(SYNTHDESTDIR)pulses_gene.asc $(SYNTHDESTDIR)pulses_gene.bin 2>&1 |tee $(SYNTHDESTDIR)pulses_gene.pack.out.txt

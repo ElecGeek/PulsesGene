@@ -171,7 +171,9 @@ begin
   Qbr <= not theOut;
   main_proc : process( CP, RST )
     begin
-      RST_if : if RST = '1' or RST = 'H' then
+      RST_if : if RST = '0' or RST = 'L' then
+        theOut <= '0';
+      else
         if falling_edge( CP ) then
           if ( J = '1' or J = 'H' ) and ( K = '1' or K = 'H' ) then
             theOut <= not theOut;
@@ -181,8 +183,6 @@ begin
             theOut <= '0';
           end if;
         end if;
-      else
-        theOut <= '0';
       end if RST_if;
     end process main_proc;
 end architecture arch;
