@@ -77,7 +77,7 @@ simul : $(DESTDIR)pulses_gene_numeric.vhdl
 	$(GHDL_PROG) -a $(SCRDIR)pulses_gene_numeric_test.vhdl
 	$(GHDL_PROG) -e Pulses_gene_test
 	$(GHDL_PROG) -r Pulses_gene_test --vcd=$(DESTDIR)pulses_gene.wav 2>&1 | tee $(DESTDIR)pulses_gene.out.txt
-	echo "The wav file is NOT an audio file, it can be opened, for instance, using gtk-wave" > $(DESTDIR)README
+	echo "The wav file is NOT an audio file, it can be opened, for instance, using gtk-wave" > $(DESTDIR)README.important
 
 synth_ice40	: $(DESTDIR)pulses_gene_numeric.vhdl
 	$(GHDL_PROG) -a $(SCRDIR)Models_74HC.vhdl
