@@ -23,14 +23,18 @@ $(DESTDIR)pulses_gene.partslist_by_refdes.txt : $(SRCDIR)pulses_gene_analog.sch 
 $(DESTDIR)pulses_gene.partslist_by_value.txt : $(SRCDIR)pulses_gene_analog.sch $(SRCDIR)pulses_gene_numeric.sch $(SRCDIR)pulses_gene_power.sch
 	$(NETLIST_PROG) -g partslist3 -o $(DESTDIR)pulses_gene.partslist_by_value.txt $(SRCDIR)pulses_gene_analog.sch $(SRCDIR)pulses_gene_numeric.sch $(SRCDIR)pulses_gene_power.sch
 
-$(BUILDDIR)HC4053.cir	:	$(SRCDIR)HC4053.sch
-	$(NETLIST_PROG) -g spice-sdb -o $(BUILDDIR)HC4053.cir $(SRCDIR)HC4053.sch
 
-$(BUILDDIR)AMP_OP.cir	:	$(SRCDIR)AMP_OP.sch
-	$(NETLIST_PROG) -g spice-sdb -o $(BUILDDIR)AMP_OP.cir $(SRCDIR)AMP_OP.sch
+$(BUILDDIR)HC4053.cir	:	$(SCRDIR)HC4053.sch
+	$(NETLIST_PROG) -g spice-sdb -o $(BUILDDIR)HC4053.cir $(SCRDIR)HC4053.sch
+	sed -r -i 's/IOut_/* IOut_/g;s/Isense_/* Isense_/g' $(BUILDDIR)HC4053.cir
 
-$(BUILDDIR)AMP_OP_FAST.cir	:	$(SRCDIR)AMP_OP_FAST.sch
-	$(NETLIST_PROG) -g spice-sdb -o $(BUILDDIR)AMP_OP_FAST.cir $(SRCDIR)AMP_OP_FAST.sch
+$(BUILDDIR)AMP_OP.cir	:	$(SCRDIR)AMP_OP.sch
+	$(NETLIST_PROG) -g spice-sdb -o $(BUILDDIR)AMP_OP.cir $(SCRDIR)AMP_OP.sch
+	sed -r -i 's/IOut_/* IOut_/g;s/Isense_/* Isense_/g' $(BUILDDIR)AMP_OP.cir
+
+$(BUILDDIR)AMP_OP_FAST.cir	:	$(SCRDIR)AMP_OP_FAST.sch
+	$(NETLIST_PROG) -g spice-sdb -o $(BUILDDIR)AMP_OP_FAST.cir $(SCRDIR)AMP_OP_FAST.sch
+	sed -r -i 's/IOut_/* IOut_/g;s/Isense_/* Isense_/g' $(BUILDDIR)AMP_OP_FAST.cir
 
 $(DESTDIR)pulses_gene.net : $(SRCDIR)pulses_gene_analog.sch $(SRCDIR)pulses_gene_numeric.sch $(SRCDIR)pulses_gene_power.sch
 	$(NETLIST_PROG) -g PCB -o $(DESTDIR)pulses_gene_temp.net $(SRCDIR)pulses_gene_analog.sch $(SRCDIR)pulses_gene_numeric.sch $(SRCDIR)pulses_gene_power.sch
