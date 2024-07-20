@@ -1,10 +1,12 @@
-name: Spice and schemas
+name: Simulation and synthesis
 
 on:
   push:
     branches: [ master, pulses_separ ]
   pull_request:
     branches: [ master, pulses_separ ]
+  workflow_dispatch:
+
 
 jobs:
 
@@ -14,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: environement
         run: sudo apt-get install -y lepton-eda
       - name: setup build folders
@@ -25,45 +27,38 @@ jobs:
         run: |
           make NETLIST_PROG=lepton-netlist BUILDDIR=arti/spice/ spice
       - name: return workflow as artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: pulsesgene_build
+          name: pulsesgene_spice
           path: arti
 
   simulation:
     name: simulation
-    needs: spice
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: environement
         run: sudo apt-get install -y lepton-eda ghdl
       - name: setup build folders
         run: |
           mkdir arti
           mkdir arti/simulation
-      - name: get workflow as artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: pulsesgene_build
-          path: arti
       - name: build
         run: |
           make NETLIST_PROG=lepton-netlist DESTDIR=arti/simulation/ simul
       - name: return workflow as artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: pulsesgene_build
+          name: pulsesgene_simul
           path: arti
 
   synth_ice40:
     name: synth_ice40
-    needs: simulation
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: environement
         run: |
           sudo apt-get install -y lepton-eda nextpnr-ice40 build-essential gcc bison flex gnat tcl-dev
@@ -92,17 +87,23 @@ jobs:
           mkdir arti
           mkdir arti/synthesis
           mkdir arti/synthesis/ice40_lp384
-      - name: get workflow as artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: pulsesgene_build
-          path: arti
       - name: build
         run: |
           make NETLIST_PROG=lepton-netlist DESTDIR=arti/simulation/ SYNTHDESTDIR=arti/synthesis/ice40_lp384/ synth_ice40
       - name: return workflow as artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: pulsesgene_build
+          name: pulsesgene_synthesis
           path: arti
 
+
+
+  merge:
+    runs-on: ubuntu-latest
+    needs: [ spice, simulation ] 
+    steps:
+      - name: Merge artifacts
+        uses: actions/upload-artifact/merge@v4
+        with:
+          delete-merged: true
+          name: pulsesgene_simul_and_synth
