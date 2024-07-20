@@ -1,85 +1,84 @@
-name: Spice and schemas
+name: Netlist, lists and schematics
 
 on:
   push:
     branches: [ master, pulses_separ ]
   pull_request:
     branches: [ master, pulses_separ ]
+  workflow_dispatch:
+
 
 jobs:
-  schemas:
-    name: schemas exports
+  schematics:
+    name: schematics exports
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: environement
         run: sudo apt-get install -y lepton-eda
       - name: setup build folders
         run: |
           mkdir arti
-          mkdir arti/schemas
+          mkdir arti/schematics
       - name: build
         run: |
-          make DESTDIR=arti/schemas/ EXPORT_PROG=lepton-cli schemas 
+          make DESTDIR=arti/schematics/ EXPORT_PROG=lepton-cli schemas 
       - name: return workflow as artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: pulsesgene_lists_schemas
+          name: pulsesgene_schematics
           path: arti
 
   lists:
     name: lists circuits
-    needs: schemas
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: environement
         run: sudo apt-get install -y lepton-eda
       - name: setup build folders
         run: |
           mkdir arti
           mkdir arti/lists
-      - name: get workflow as artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: pulsesgene_lists_schemas
-          path: arti
       - name: build
         run: |
           make DESTDIR=arti/lists/ NETLIST_PROG=lepton-netlist lists
       - name: return workflow as artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: pulsesgene_lists_schemas
+          name: pulsesgene_lists
           path: arti
 
   pcb-net:
     name: netlist for PCB
-    needs: lists
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: environement
         run: sudo apt-get install -y lepton-eda
       - name: setup build folders
         run: |
           mkdir arti
           mkdir arti/PCB
-      - name: get workflow as artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: pulsesgene_lists_schemas
-          path: arti
       - name: build
         run: |
           make DESTDIR=arti/PCB/ NETLIST_PROG=lepton-netlist pcb
       - name: return workflow as artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: pulsesgene_lists_schemas
+          name: pulsesgene_PCB_net
           path: arti
 
 
+  merge:
+    runs-on: ubuntu-latest
+    needs: [ schematics, lists, pcb-net ] 
+    steps:
+      - name: Merge artifacts
+        uses: actions/upload-artifact/merge@v4
+        with:
+          delete-merged: true
+          name: pulses_gene_schema
