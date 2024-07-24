@@ -66,6 +66,7 @@ jobs:
           #sudo apt-get install -y libreadline-dev gawk libffi-dev git
           sudo apt-get install -y graphviz pkg-config
           sudo apt-get install -y python3 libboost-system-dev libboost-python-dev libboost-filesystem-dev zlib1g-dev
+          sudo apt-get install -y berkeley-abc
       - name: compile yosys
         run: |
           git clone https://github.com/YosysHQ/yosys
