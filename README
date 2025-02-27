@@ -1,7 +1,6 @@
 This is a fun project to produce the pulses as the MultiSIgnalGene do, but as an discrete electronic version.
 
 There is now an FPGA version of the numerical part. For now, it is based on the VHDL export of the numerical schematic (initially intended for testing).
-TODO: write from scratch a VHDL behavior version.
 
 
 The project is based on gEda/Lepton-eda and NG-Spice.
