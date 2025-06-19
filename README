@@ -1,6 +1,11 @@
-This is a fun project to produce the pulses as the MultiSIgnalGene do, but as an discrete electronic version.
+This is a FUN project to implement the pulse audio waveform of the MultiSIgnalGene.
 
-There is now an FPGA version of the numerical part. For now, it is based on the VHDL export of the numerical schematic (initially intended for testing).
+It is an electronic version based on 74HC logic circuits and operational amplifiers. The schematic diagrams, the parts list, the tests and a PCB are provided. 
+ 
+There is an FPGA version of the numerical part as well. It is based on the VHDL export of the numerical schematic (initially intended for testing).
+
+
+To interface with the software project, it should be set to sine output audio. This project inputs the sine audio.
 
 
 The project is based on gEda/Lepton-eda and NG-Spice.
@@ -19,6 +24,7 @@ The input is a square or a sine signal, the pulses are generated using the peak 
 It has been only tested at a functional level. Especially, the operational amplifiers model are very basic.
 
 DO NOT reuse the models for another simulation. They have been designed as "simple stupid" in order to speed up spice.
+
 
 The parts-list points LF355 operational amplifiers, many can be used
 The X1 is a preamplifier, according to the input level, its resistors should be adjusted
