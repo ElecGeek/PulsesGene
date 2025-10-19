@@ -1,5 +1,5 @@
 This is a FUN project to implement the pulse audio waveform of the MultiSIgnalGene.
-It is another way to do the things the the PulsesDigital project.
+It is another way to do the things than the PulsesDigital project.
 
 It is an electronic version based on 74HC logic circuits and operational amplifiers. The schematic diagrams, the parts list, the tests and a PCB are provided.
 There are one PCB per channel, any number of channels can be built.
